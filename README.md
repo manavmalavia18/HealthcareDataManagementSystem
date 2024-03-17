@@ -70,3 +70,16 @@ This project implements a Healthcare Data Management System, providing RESTful A
 
 ### Patch Plan
 
+- **URL**: `/v1/plan/:id`
+- **Method**: `PATCH`
+- **Parameters**: `id` - The ID of the plan to patch.
+- **Request Body**: JSON object representing the changes to apply.
+- **Authentication Required**: Yes
+
+## Contributors
+
+- [Your Name](https://github.com/your-profile)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
