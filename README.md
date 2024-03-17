@@ -78,7 +78,7 @@ This project implements a Healthcare Data Management System, providing RESTful A
 
 ## Contributors
 
-- [Your Name](https://github.com/your-profile)
+- [Manav Sandeep Malavia](https://github.com/manavmalavia18)
 
 ## License
 
