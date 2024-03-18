@@ -1,6 +1,6 @@
 # Healthcare Data Management System
 
-This project implements a Healthcare Data Management System, providing RESTful APIs for managing healthcare plans.
+This project implements a Healthcare Data Management System, providing RESTful APIs for managing healthcare plans
 
 ## Features
 
