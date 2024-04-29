@@ -39,7 +39,6 @@ async function verifyToken(req, res, next) {
     }
 }
 
-
 app.post('/v1/plan', verifyToken, async (req, res) => {
     const ajv = new Ajv();
     addFormats(ajv);
@@ -50,17 +49,28 @@ app.post('/v1/plan', verifyToken, async (req, res) => {
         return res.status(400).send({ message: "Validation failed", errors: validate.errors });
     }
 
+    // Flatten and store the data
+    const flattenedData = flattenAndStore(req.body);
 
-    const requestBodyString = JSON.stringify(req.body);
     const objectId = req.body.objectId;
     if (!objectId) {
         return res.status(400).send({ message: "Missing objectId in the request body." });
     }
-    await redisClient.set(objectId, requestBodyString);
+
+    // Store the flattened data in Redis
+    for (const entry of flattenedData) {
+        await redisClient.set(entry.id, entry.entry);
+    }
+
+    // Get the stored data string
     const dataString = await redisClient.get(objectId);
+
+    // Generate ETag from the stored data
     const generatedEtag = etag(dataString);
+
+    // Set ETag header and send response
     res.set('ETag', generatedEtag);
-    res.status(201).send(JSON.parse(dataString))
+    res.status(201).send(JSON.parse(dataString));
 });
 
 
