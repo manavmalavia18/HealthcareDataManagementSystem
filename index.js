@@ -22,7 +22,7 @@ const client = new OAuth2Client();
 async function verifyToken(req, res, next) {
     try {
         const authHeader = req.headers['authorization'];
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        if (!authHeader || !authHeader.startsWith('Bearer')) {
             throw new Error('Authorization header missing or invalid');
         }
 
